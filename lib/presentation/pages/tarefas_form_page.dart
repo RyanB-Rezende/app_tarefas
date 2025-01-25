@@ -1,7 +1,7 @@
 import 'package:app_tarefas/data/model/tarefas_model.dart';
 import 'package:app_tarefas/data/repositories/tarefas_repositeries.dart';
 import 'package:flutter/material.dart';
-import 'package:in':
+import 'package:intl/intl.dart';
 
 class TaskFormPage extends StatefulWidget {
   const TaskFormPage({super.key});
@@ -28,7 +28,9 @@ class _TaskFormPageState extends State<TaskFormPage> {
         descricao: _descricaoController.text,
         status: _status,
         dataInicio: DateFormat('yyyy-MM-dd').format(_dataInicio),
-        dataFim: _dataFim != null ? DateFormat('yyyy-MM-dd').format(_dataFim!) : null,
+        dataFim: _dataFim != null
+            ? DateFormat('yyyy-MM-dd').format(_dataFim!)
+            : null,
       );
 
       await _repository.insertTarefa(tarefa);
@@ -114,13 +116,15 @@ class _TaskFormPageState extends State<TaskFormPage> {
                 decoration: const InputDecoration(labelText: 'Status'),
               ),
               ListTile(
-                title: Text('Data de Início: ${DateFormat('yyyy-MM-dd').format(_dataInicio)}'),
+                title: Text(
+                    'Data de Início: ${DateFormat('yyyy-MM-dd').format(_dataInicio)}'),
                 trailing: const Icon(Icons.calendar_today),
                 onTap: () => _selectDataInicio(context),
               ),
               if (_dataFim != null)
                 ListTile(
-                  title: Text('Data de Término: ${DateFormat('yyyy-MM-dd').format(_dataFim!)}'),
+                  title: Text(
+                      'Data de Término: ${DateFormat('yyyy-MM-dd').format(_dataFim!)}'),
                   trailing: const Icon(Icons.calendar_today),
                   onTap: () => _selectDataFim(context),
                 ),
